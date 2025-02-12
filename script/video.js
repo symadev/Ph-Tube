@@ -1,7 +1,16 @@
 console.log('video script added');
+
+function getTimestring( time){
+  //get hour and rest second
+  const hour = parseInt(time / 3600);
+  let remainingSecond= time % 3600;
+  const minute = parseInt(remainingSecond /60);
+  remainingSecond=  parseInt(remainingSecond/60);
+  return `${hour} hour ${minute} minute ${remainingSecond} second ago`;
+}
+console.log( getTimestring(7865));
+
 //1-- fetch, load and show categories on html
-
-
 //create loadCategories
 
 const loadCategories =() =>{
@@ -50,7 +59,7 @@ const displayVideos = (videos) =>{
       src=${video.thumbnail}
       class="w-full h-full object-cover"
       alt="Shoes"  />
-      ${video.others.posted_date ?.length == 0? "" : `<span class="absolute right-2 bottom-2 rounded bg-black text-white p-2">${video.others.posted_date}</span>`}
+      ${video.others.posted_date ?.length == 0? "" : `<span class="absolute text-xs right-2 bottom-2 rounded bg-black text-white p-1">${getTimestring(video.others.posted_date)}</span>`}
       
   </figure>
   <div class="card-body px-0 py-2 flex gap-2">
